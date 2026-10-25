@@ -1,0 +1,3 @@
+interface:
+  display_name: "Scientific Section Writer"
+  short_description: "Author rigorous, runnable Jupyter notes for subsection tickets"

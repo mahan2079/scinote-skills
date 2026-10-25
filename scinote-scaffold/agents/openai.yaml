@@ -1,0 +1,3 @@
+interface:
+  display_name: "Scientific Notes Scaffolder"
+  short_description: "Scaffold scientific curriculum, tickets, and Jupyter environments"
