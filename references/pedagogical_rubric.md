@@ -31,13 +31,19 @@ Every subsection `.ipynb` must fulfill:
 - [ ] Executable Python code cells with NumPy / SciPy / Matplotlib
 - [ ] Clear visualizations with labeled axes, titles, and legends
 - [ ] Proper academic citations with arXiv/DOI links
-- [ ] 2 Self-assessment questions with expandable/worked answers
+- [ ] Self-assessment exercises with step-by-step worked solutions
 - [ ] Clean headless execution with 0 errors via `nb_tool.py execute`
 
-## 4. Variable Topology: Dynamic Chapter, Section & Subsection Sizing
-- **No Uniformity Enforced**: Never force a rigid count of sections (e.g. 2 per chapter) or subsections (e.g. 2 per section).
-- **Topic-Driven Granularity**:
-  - Foundational, sprawling, or mathematically dense chapters should have as many sections as needed (e.g., 5 to 12+ sections).
-  - Compact, review, or introductory chapters may only need 2 or 3 sections.
-  - Similarly, an intricate section (e.g., proving convergence of optimization algorithms) may demand 4 to 8 subsections, while a self-contained concept needs only 1.
-- **Cognitive Sizing**: Each individual subsection notebook should represent approximately one focused study session (one coherent concept, its derivation, a code experiment, and exercises). If a topic requires more than 3 distinct code experiments or 4 major theorems, split it into multiple subsections.
+## 4. Natural Scientific Topology & Sizing (Strict Anti-Toy Invariant)
+- **Strict Anti-Toy Rule**: The LLM "Rule of Twos" (defaulting to 2 parts, 2 chapters, 2 sections, 2 subsections) is strictly forbidden. Real scientific domains are rich, nuanced, and uneven.
+- **Natural Chapter Sizing**:
+  - A chapter must cover a complete, coherent scientific pillar (e.g. "Chapter 3: Spectral Graph Theory & Graph Laplacians" or "Chapter 5: Continuous Normalizing Flows and Neural ODEs").
+  - Do NOT artificially split or compress chapters to fit arbitrary counts.
+- **Natural Section Sizing**:
+  - Every distinct mathematical structure, physical law, operator, or algorithmic family belongs in its own dedicated section.
+  - A complex chapter will naturally feature **5 to 12 sections**. Lumping distinct concepts together creates shallow, unreadable notes.
+  - An introductory or review chapter may only need 2 to 4 sections.
+- **Natural Subsection Sizing (Cognitive Unit of Study)**:
+  - Each individual subsection notebook represents **one focused study session** (one coherent mathematical concept, its step-by-step derivation, an executable Python experiment with visualization, and self-assessment exercises).
+  - An intricate section (e.g., proving convergence of optimization algorithms) may demand **4 to 8 subsections**, while a self-contained definition needs only 1 or 2.
+  - If a topic introduces more than 3 distinct code experiments or 4 major theorems, split it into multiple subsections.

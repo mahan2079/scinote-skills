@@ -194,7 +194,7 @@ Before writing, prompt the user with these checkpoints to calibrate explanation 
 3. **Mermaid Flowchart**: Process, state machine, or data flow visualization.
 4. **Interactive Code & Plots**: Python code blocks (NumPy, SciPy, Matplotlib) that execute and generate plots.
 5. **Citations**: Citations referencing academic literature and papers from `papers/{ch_slug}/papers.bib`.
-6. **Self-Assessment Check**: 2 conceptual questions with worked solutions at the end.
+6. **Self-Assessment Exercises**: Comprehensive conceptual questions and hands-on exercises with worked step-by-step solutions.
 
 ## Previous Sections Review
 *(Context from previous tickets will be appended here as they are completed)*

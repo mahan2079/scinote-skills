@@ -53,10 +53,10 @@ Read the specified ticket file (e.g., `tickets/SEC-01-01-01.md`). Extract:
 - Target learning goals and key formulas
 
 ### Step 2: Level Diagnostic Checkpoint (HITL)
-Invoke the OpenCode `question` tool to present the 2 diagnostic questions from the ticket to the user. For instance:
-- Option A: Emphasize geometric/physical intuition with visual analogies.
-- Option B: Emphasize rigorous mathematical derivations and proofs.
-- Option C: Emphasize computational/algorithmic implementation and numerical stability.
+Invoke the OpenCode `question` tool to present the pedagogical checkpoint questions listed in the ticket to the user. Calibrate explanation depth based on their response:
+- Focus on geometric/physical intuition with visual analogies for foundational refreshers.
+- Focus on rigorous mathematical derivations and proofs for theoretical mastery.
+- Focus on computational/algorithmic implementation and numerical stability for applied engineering.
 
 Incorporate the user's choices into the notebook depth.
 
@@ -102,7 +102,7 @@ The code must:
 Cite relevant papers from `papers/chXX/papers.bib` or foundational literature with author, title, year, and arXiv/DOI link.
 
 #### Cell 8: Self-Assessment Exercises (Markdown)
-Provide 2 targeted conceptual/computational questions followed by expandable or detailed solutions to cement active learning.
+Provide comprehensive conceptual and computational exercises tailored to the notebook's concepts, followed by expandable or detailed step-by-step solutions to cement active learning.
 
 ### Step 4: Validate & Execute Headlessly
 Run headless execution using the notes environment:

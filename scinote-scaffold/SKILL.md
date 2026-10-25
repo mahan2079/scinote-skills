@@ -1,6 +1,6 @@
 ---
 name: scinote-scaffold
-description: "Scaffold a comprehensive scientific notes curriculum on any topic. Conducts HITL intake diagnostics, plans Parts -> Chapters -> Sections -> Subsections, generates folder structures, sets up shared notes virtual environments, and creates an unblocked dependency graph of markdown tickets."
+description: "Scaffold an adaptive, comprehensive scientific notes curriculum on any topic. Conducts HITL intake diagnostics, performs deep academic domain taxonomy decomposition, plans naturally sized Parts -> Chapters -> Sections -> Subsections without artificial constraints, scaffolds folder structures, sets up shared notes virtual environments, and creates an unblocked dependency graph of markdown tickets."
 category: development
 risk: safe
 source: self
@@ -22,7 +22,7 @@ tools:
 
 # Scinote Scaffold
 
-Plan and scaffold a comprehensive, first-principles scientific curriculum with companion research papers, hands-on chapter projects, and runnable Jupyter notebooks.
+Plan and scaffold an authoritative, comprehensively structured scientific curriculum with companion research papers, hands-on chapter projects, and runnable Jupyter notebooks.
 
 ## When to Use
 
@@ -36,95 +36,138 @@ Plan and scaffold a comprehensive, first-principles scientific curriculum with c
 ## Operating Invariants
 
 1. **HITL Diagnostic First**: Always use the OpenCode `question` tool to interview the user regarding learning outcomes, mathematical background, and target scope. Assume nothing.
-2. **Variable Topology & Granular Flexibility (NO Fixed Counts)**: 
-   - **NEVER** force a uniform or fixed number of sections per chapter (e.g., forcing 2 sections). A chapter might need 2 sections, or 5, or 10+, depending entirely on the breadth and complexity of the subject matter.
-   - **NEVER** force a uniform or fixed number of subsections per section (e.g., forcing 2 subsections). A section may have 1 focused subsection or 6+ detailed subtopics.
-   - Each chapter and section must have its own tailored, independent breakdown reflecting the natural mathematical and conceptual structure of the material.
-3. **First-Principles Scaffolding**: Every chapter must have clear prerequisites, learning goals, and companion project goals.
-4. **Deterministic Structure**: Always produce the canonical folder hierarchy:
+2. **Anti-Toy Invariant & Dynamic Topology (STRICT)**:
+   - **Banned Anti-Pattern**: NEVER fall into the LLM "Rule of Twos" (e.g. defaulting to 2 parts, 2 chapters, 2 sections, 2 subsections). Real scientific fields cannot be crammed into a toy outline.
+   - **Topic-Driven Natural Topology**: The number of chapters, sections, and subsections must reflect the true academic depth of the subject matter:
+     - Foundational or mathematically dense chapters often demand **5 to 12 distinct sections** (e.g., separating distinct theorems, operators, and algorithms into individual sections rather than lumping them together).
+     - Individual sections naturally decompose into **1 to 6+ subsections**, where each subsection corresponds to a single, focused notebook study session.
+     - Introductory or review chapters may only need 2-4 sections, while advanced or algorithmic chapters need extensive coverage.
+   - Structure the curriculum like an authoritative graduate textbook (e.g. Nielsen & Chuang, Boyd & Vandenberghe, Goodfellow, or Goldstein).
+3. **Interactive Syllabus Review Gate (HITL)**: Before generating any files or tickets, present the full drafted breakdown of Parts, Chapters, Sections, and Subsections to the user. Get explicit user confirmation or adjustments.
+4. **First-Principles Scaffolding**: Every chapter must have clear prerequisites, learning goals, companion research paper topics, and companion project goals.
+5. **Deterministic File & Ticket Hierarchy**:
    - `curriculum/syllabus.md` & `curriculum/PROGRESS.md`
    - `tickets/` with markdown files for every subsection (`SEC-XX-YY-ZZ.md`), chapter paper review (`PAPER-XX.md`), and chapter project (`PROJ-XX.md`).
    - `notes/chXX-.../secYY-.../`
    - `papers/chXX-.../`
    - `projects/chXX-.../{proposal,docs,notes,src}/`
-5. **Environment Isolation**: Initialize the shared notes environment (`.venv-notes`) using `setup_notes_env.sh` and register `scinotes-kernel`.
+6. **Environment Isolation**: Initialize the shared notes environment (`.venv-notes`) using `setup_notes_env.sh` and register `scinotes-kernel`.
 
 ---
 
 ## Step-by-Step Procedure
 
-### Step 1: Intake & Level Diagnostic (HITL)
-Interview the user via the `question` tool across the key axes:
-1. **Subject & Target Destination**: Exact field, specific topics of interest, and ultimate goal.
-2. **Curriculum Topology & Breadth**: 
-   - How deep and broad should the curriculum be?
-   - Inquire about the desired breakdown: highlight that chapters can vary in weight (e.g., core foundational chapters may have 6-12 sections, while introductory or concluding chapters may only have 2-4 sections).
-   - Let the user specify or confirm the varied section breakdown per chapter and subsection breakdown per section.
-3. **Mathematical Background**: Comfort level with calculus, linear algebra, probability, and proofs.
-4. **Computational Background**: Python fluency, scientific packages (NumPy, PyTorch, SciPy).
+### Step 1: Intake Diagnostic Interview (HITL)
+Interview the user via the OpenCode `question` tool across the 4 key axes:
+1. **Target Subject & Destination**: What exact topic are we mastering? What is the end goal (research-readiness, implementing production systems, passing qualifying exams, or deep intellectual curiosity)?
+2. **Target Depth & Scope**:
+   - Comprehensive Masterclass (exhaustive multi-part graduate treatise covering every mathematical derivation, algorithmic variant, edge case, and physical simulation).
+   - Focused Research Monograph (deep dive into specific subfields, skipping elementary prerequisites).
+   - Applied Practitioner Suite (rigorous intuition + production-grade code implementations and benchmarks).
+3. **Mathematical Baseline**: Linear algebra, multivariate calculus, differential equations, real/functional analysis, probability/measure theory, abstract algebra.
+4. **Computational Baseline**: Python, vectorized NumPy/SciPy, autograd frameworks (PyTorch/JAX), hardware acceleration (GPU/TPU).
 
-### Step 2: Build Syllabus Spec
-Synthesize the user's responses into a JSON specification where each chapter and section has its own organically sized breakdown. For example:
+### Step 2: Academic Domain Decomposition
+Analyze the chosen field and break it down according to genuine academic rigor:
+- **Pillars / Parts**: Map out the high-level thematic trajectory (typically 3 to 5 Parts: e.g., Part 1: Mathematical Foundations; Part 2: Core Mechanics & Dynamics; Part 3: Advanced Architectures & Algorithms; Part 4: Frontier Applications & Open Problems).
+- **Chapters**: Divide each Part into cohesive chapters (typically 3 to 6 chapters per Part).
+- **Sections**: For each chapter, identify EVERY distinct mathematical structure, physical law, operator, or algorithmic family. Ensure no complex topics are glossed over or combined artificially.
+- **Subsections**: Each subsection represents **one runnable Jupyter notebook** (~one study session):
+  - Motivation & mental model
+  - Step-by-step rigorous LaTeX derivation
+  - Mermaid system diagram
+  - Python computational experiment & visualization
+  - Literature citations & self-assessment exercises
+
+### Step 3: HITL Syllabus Review Gate
+Present the proposed syllabus structure to the user via the `question` tool:
+- Show the complete outline with chapter titles, section breakdowns, and estimated subsection count.
+- Ask: *"Does this decomposition cover the full scope of your desired curriculum, or should we add/expand specific chapters or subtopics?"*
+- Incorporate any feedback, added sections, or deeper subsections requested by the user.
+
+### Step 4: Compile Spec & Initialize Curriculum
+Once the user approves the outline, serialize the structure into `/tmp/opencode/curriculum_spec.json`.
+The JSON must reflect the natural, varied topology:
 ```json
 {
-  "topic": "Quantum Computing & Quantum Algorithms",
-  "level": "First-Principles to Advanced",
-  "description": "Comprehensive theoretical notes, simulations, and companion papers.",
+  "topic": "Geometric Deep Learning & Gauge Equivariant Neural Networks",
+  "level": "Graduate / Research Monograph",
+  "description": "Comprehensive theoretical notes, group actions, manifold representations, and equivariant architectures.",
   "parts": [
     {
-      "title": "Mathematical Foundations",
+      "title": "Mathematical Foundations: Groups, Manifolds, and Fibres",
       "chapters": [
         {
           "number": 1,
-          "title": "Hilbert Spaces and Quantum States",
-          "project_title": "Quantum State Vector Simulator",
-          "paper_topics": ["Quantum state tomography", "Bra-ket notation and density operators"],
+          "title": "Lie Groups, Lie Algebras, and Representations",
+          "project_title": "Lie Group SO(3) & SE(3) Representation Engine",
+          "paper_topics": ["Representation theory for neural networks", "Lie algebra exponential maps"],
           "sections": [
             {
               "number": 1,
-              "title": "Complex Vector Spaces",
+              "title": "Topological Groups and Matrix Lie Groups",
               "subsections": [
                 {
                   "number": 1,
-                  "title": "Inner Products and Dirac Notation",
-                  "goals": ["Master bra-ket notation", "Derive Cauchy-Schwarz inequality", "Implement inner products in NumPy"]
+                  "title": "Definition and Axioms of Matrix Lie Groups",
+                  "goals": ["General linear group GL(n, R)", "Topological properties and compactness", "Implement matrix exponentials"]
                 },
                 {
                   "number": 2,
-                  "title": "Cauchy-Schwarz and Triangle Inequalities",
-                  "goals": ["Formal algebraic proofs of foundational inequalities"]
+                  "title": "Orthogonal Group O(n) and Special Orthogonal Group SO(n)",
+                  "goals": ["Isometries and rotations", "Orientation preservation", "Numerical orthogonalization"]
                 },
                 {
                   "number": 3,
-                  "title": "Gram-Schmidt Orthogonalization",
-                  "goals": ["Orthonormal basis construction and numerical implementation"]
+                  "title": "Special Euclidean Group SE(n) and Rigid Motions",
+                  "goals": ["Semidirect products", "Homogeneous coordinate representations", "SE(3) kinematics in Python"]
                 }
               ]
             },
             {
               "number": 2,
-              "title": "Linear Operators on Hilbert Spaces",
+              "title": "Lie Algebras and the Exponential Map",
               "subsections": [
                 {
                   "number": 1,
-                  "title": "Hermitian, Unitary, and Normal Operators",
-                  "goals": ["Spectral theorem and matrix representations"]
+                  "title": "Tangent Spaces at the Identity and Lie Brackets",
+                  "goals": ["Infinitesimal generators", "Commutator brackets and Jacobi identity"]
+                },
+                {
+                  "number": 2,
+                  "title": "Exponential and Logarithmic Coordinates on SO(3)",
+                  "goals": ["Rodrigues rotation formula", "Hat and vee isomorphism", "Lie algebra vector space basis"]
+                },
+                {
+                  "number": 3,
+                  "title": "Baker-Campbell-Hausdorff (BCH) Formula and Curvature",
+                  "goals": ["Non-commutative additions", "Series expansion and truncation error bounds"]
+                },
+                {
+                  "number": 4,
+                  "title": "Adjoint Representation and Invariant Metrics",
+                  "goals": ["Killing form", "Bi-invariant Riemannian metrics on compact Lie groups"]
                 }
               ]
             },
             {
               "number": 3,
-              "title": "Tensor Products and Composite Systems",
+              "title": "Group Representation Theory for Deep Learning",
               "subsections": [
                 {
                   "number": 1,
-                  "title": "Kronecker Products and State Spaces",
-                  "goals": ["Multiqubit state space representations"]
+                  "title": "Linear Representations, Invariant Subspaces, and Irreps",
+                  "goals": ["Schur's Lemma", "Complete reducibility (Maschke's theorem)"]
                 },
                 {
                   "number": 2,
-                  "title": "Entanglement and Non-Separability Criteria",
-                  "goals": ["Schmidt decomposition and entanglement entropy"]
+                  "title": "Wigner D-Matrices and Spherical Harmonics",
+                  "goals": ["SO(3) irreps decomposition", "Spherical harmonics expansion algorithms"]
+                },
+                {
+                  "number": 3,
+                  "title": "Clebsch-Gordan Coefficients and Tensor Products of Irreps",
+                  "goals": ["Coupling angular momenta", "Tensor product decomposition into irreps", "NumPy Clebsch-Gordan tensor contraction"]
                 }
               ]
             }
@@ -136,26 +179,27 @@ Synthesize the user's responses into a JSON specification where each chapter and
 }
 ```
 
-Save this temporary spec file to `/tmp/opencode/curriculum_spec.json`.
-
-### Step 3: Run Ticket Generator
-Execute `scripts/ticket_tool.py`:
+Run `ticket_tool.py`:
 ```bash
 python3 /home/mahan/Work/scinote-skills/scripts/ticket_tool.py init-curriculum \
   --spec /tmp/opencode/curriculum_spec.json \
   --base-dir .
 ```
 
-### Step 4: Provision Shared Notes Environment
+### Step 5: Provision Shared Notes Environment
 Run `setup_notes_env.sh` to ensure Python packages (`numpy`, `scipy`, `matplotlib`, `sympy`, `ipykernel`) are installed and registered under the kernel `scinotes-kernel`:
 ```bash
 /home/mahan/Work/scinote-skills/setup_notes_env.sh .venv-notes scinotes-kernel "Python (Scientific Notes)"
 ```
 
-### Step 5: Report Roadmap & Next Prompt
-Print a summary of the scaffolded curriculum, display the path to `curriculum/syllabus.md`, and give the user the exact copy-paste prompt for the first frontier ticket:
+### Step 6: Present Roadmap & Next Frontier Prompt
+Display the generated roadmap summary, reference `curriculum/syllabus.md`, and give the user the exact copy-paste prompt for the first frontier ticket:
 ```text
 Curriculum scaffolded successfully!
-Next step: In a fresh OpenCode chat, run:
-scinote-section-writer tickets/SEC-01-01-01.md
+Syllabus: curriculum/syllabus.md
+Progress: curriculum/PROGRESS.md
+
+First frontier ticket ready:
+scinote-paper-finder tickets/PAPER-01.md
+(or: scinote-section-writer tickets/SEC-01-01-01.md)
 ```
